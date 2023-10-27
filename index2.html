@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="playlists"></div>
+<script>
+    const playlists = document.querySelector('.playlists');
+    let playlistHtml = '';
+
+    for (let i = 0; i < 10; i++) {
+        playlistHtml += `
+            <div class="playlist sub-content">
+                <div class="playbtn">
+                    <a href=""><i class="fa-solid fa-play"></i></a>
+                </div>
+                <img src="./assets/img/logo/playlistpng.png" alt="Playlist Image">
+                <p>Tên playlist</p>
+                <p>Số lượng bài hát</p>
+            </div>
+        `;
+    }
+
+    playlists.innerHTML = playlistHtml;
+</script>
+
+</body>
+</html>

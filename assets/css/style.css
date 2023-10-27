@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+html {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    padding: 12px;
+    margin: 12px;
+    background-color: black;
+}
+
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.open {
+    display: flex !important;
+}
+
+.modal .register-modal-container,
+.modal .js-login-modal-container {
+    max-width: calc(100% - 32px);
+    width: 600px;
+    background-color: white;
+    border-radius: 8px;
+    animation: modalFadeIn ease 0.5s;
+
+}
+
+
+.modal .register-modal-container .register-modal-header,
+.modal .login-modal-container .login-modal-header {
+    padding: 32px;
+    font-size: 28px;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    background-color: #009688;
+    text-transform: uppercase;
+}
+
+.register-modal-body,
+.login-modal-body {
+    padding: 8px 32px;
+}
+
+.modal .row-login,
+.modal .btns {
+    width: 100%;
+}
+
+.login-modal-body label,
+.register-modal-body label {
+    color: #242323;
+    float: left;
+    font-size: 0.8em;
+
+}
+
+.login-modal-body .row-login::after,
+.register-modal-body .row-login::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.register-modal-body input,
+.login-modal-body input {
+    border: none;
+    float: right;
+    outline: none;
+    color: #242323;
+    border-bottom: 1px solid #333;
+    width: 75%;
+
+}
+
+.login-modal-body input,
+.register-modal-body input,
+.login-modal-body label,
+.register-modal-body label {
+    margin: 4px 0;
+    padding: 10px 10px;
+}
+
+::placeholder {
+    color: #ccc;
+    font-size: 0.8em;
+    text-transform: lowercase;
+}
+
+
+.register-modal-body .btn,
+.login-modal-body .btn {
+    background-color: #009688;
+    padding: 16px 60px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    align-items: center;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+}
+
+.register-modal-body .cancel-btn,
+.login-modal-body .cancel-btn {
+    background-color: rgb(206, 20, 20);
+}
+
+
+
+.register-modal-body .btn:hover,
+.login-modal-body .btn:hover {
+    background-color: #ccc;
+    color: black;
+}
+
+.register-modal-footer,
+.login-modal-footer {
+    padding-bottom: 20px;
+}
+
+.register-modal-footer p,
+.login-modal-footer p {
+    text-align: center;
+    color: black;
+}
+
+.register-modal-footer a,
+.login-modal-footer a {
+    color: black;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#header {
+    width: 20%;
+    background-color: black;
+    position: fixed;
+    left: 12px;
+    top: 12px;
+    bottom: 12px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+#header .sub-header {
+    background-color: rgb(18, 18, 18);
+    border-radius: 8px;
+}
+
+#header .sub-header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header .logo img {
+    width: 50%;
+}
+
+#header .sub-header .search-box {
+    padding: 8px;
+}
+
+
+#header .search-box .search-text {
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #333;
+    width: 80%;
+    background-color: rgb(18, 18, 18);
+}
+
+.sub-header .search-box .search-btn {
+    float: right;
+    width: 20%;
+    padding: 8px;
+    background-color: rgb(18, 18, 18);
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+
+#header .sub-header-nav {
+    padding: 8px;
+    background-color: rgb(18, 18, 18);
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+#header .sub-header-nav ul::after {
+    content: '';
+    display: block;
+    background-color: white;
+    height: 1px;
+}
+
+#header .sub-header-nav li {
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.sub-header-nav i[class *='fa-solid']:hover li {}
+
+#header .sub-header-nav li:hover,
+.sub-header .search-box .search-btn:hover,
+.content .sub-content:hover,
+.rank .rank-song:hover {
+    background-color: cadetblue !important;
+    cursor: pointer;
+}
+
+
+.content {
+    width: 60%;
+    background-color: rgb(18, 18, 18);
+    margin-left: 20.5%;
+    border-radius: 8px;
+}
+
+.content .poster {
+    padding-top: 200px;
+    background-size: contain;
+    background-color: #242323;
+    background-position: 0;
+    animation: changePoster 5s ease infinite;
+}
+
+@keyframes changePoster {
+    0% {
+        background-position: 0;
+    }
+
+    30% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+
+}
+
+.content .section {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.content .section .content-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.content .sub-content {
+    position: relative;
+}
+
+.content .playlist,
+.content .songs,
+.content .artist {
+    width: calc(100% / 4.3);
+    background-color: rgb(49, 48, 48);
+    padding: 8px;
+    border-radius: 8px;
+    float: left;
+    margin: 4px;
+}
+
+.section .playlist img,
+.section .songs img,
+.section .artist img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.content .section::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.content .playbtn {
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+    padding: 14px;
+    background-color: cadetblue;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #20D760;
+    display: none;
+}
+
+.content .playbtn i {
+    font-size: 30px;
+    color: black;
+}
+
+
+.rank {
+    width: 18%;
+    position: fixed;
+    right: 12px;
+    top: 12px;
+    bottom: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background-image: linear-gradient(to bottom right, rgb(48, 4, 62), rgb(134, 36, 180));
+}
+
+.rank .rank-title {
+    text-align: center;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.rank .rank-songs .rank-song {
+    position: relative;
+    margin-top: 4px;
+    background-color: #14305e;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.rank-songs .rank-song .info {
+    margin-left: 4px;
+}
+
+.rank-songs .rank-song .song-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70%;
+    font-size: 14px;
+    padding: 4px;
+}
+
+
+
+.rank .rank-song .rank-img {
+    position: relative;
+    height: 100%;
+    width: 20%;
+}
+
+
+.rank .rank-song .rank-number {
+    display: flex;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: rgb(200, 45, 21);
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.rank .rank-song img {
+    width: 100%;
+    height: 100%;
+}
+
+.rank .tab-item {
+    float: left;
+    padding: 4px 4px;
+    cursor: pointer;
+}
+
+.rank .tab-item:hover {
+    color: #4018df;
+}
+
+.rank .tabs .border {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.rank .tabs::after {
+    content: '';
+    display: block;
+    clear: both;
+}
