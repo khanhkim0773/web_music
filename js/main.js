@@ -53,9 +53,6 @@ function changPoster() {
 changPoster()
 setInterval(changPoster, 5000)
 
-console.log(playBtns)
-
-
 for (let i = 0; i < subContents.length; i++) {
     subContents[i].addEventListener('mouseenter', () => {
         playBtns[i].classList.toggle('open');
