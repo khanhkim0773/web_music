@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.4.2-web/css/all.css">
+    <title>Tìm kiếm</title>
+</head>
+<body>
+    <script src="./js/header.js"></script>
+    <div id="headerJS">
+        <script>
+            document.getElementById('headerJS').innerHTML = headerDiv;
+        </script>
+    </div>
+    
+
+    <div class="content">
+        <div class="list-song section">
+            <p class="content-title">Kết quả tìm kiếm</p>
+            <div class="songs-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const songContainer = document.querySelector('.songs-container');
+        let songHtml = '';
+        for (let i = 0; i < 14; i++) {
+            songHtml += `
+    <div class="songs sub-content">
+        <div class="playbtn">
+            <a href=""><i class="fa-solid fa-play"></i></a>
+        </div>
+        <img src="./assets/img/logo/logobaihat.jpg" alt="Playlist Image">
+        <p>Có ai hẹn hò cùng em chưa</p>
+        <p class = "description">Quân AP</p>
+    </div>
+`;
+        }
+        songContainer.innerHTML = songHtml;
+    </script>
+
+    <div class="rank">
+        <p class="rank-title"><i class="rank-title fa-solid fa-ranking-star"></i>Bảng xếp hạng </p>
+        <div class="tabs">
+            <div class="tab-item">
+                Việt Nam
+            </div>
+            <div class="tab-item border">
+
+                Âu mỹ
+            </div>
+            <div class="tab-item">
+                Hàn Quốc
+            </div>
+        </div>
+
+        <div class="rank-songs">
+            <script>
+                const rankSongContainer = document.querySelector('.rank-songs');
+                let rankSongHtml = '';
+                for (let i = 0; i < 8; i++) {
+                    rankSongHtml += `
+                        <div class="rank-song">
+                            <div class="rank-img">
+                                <div class="rank-number">1</div>
+                                <img src="./assets/img/logo/Songs_to_Calm_Your_Mind_1080x.webp" alt="">
+                            </div>
+                            
+                            <div class="song-info">
+                                <p class="info">Tên bài hát <i class="info fa-regular fa-heart"></i> <i class="info fa-solid fa-ellipsis-vertical"></i></p>
+                                <p class="info">Tác giả</p>
+                            </div>
+                        </div>`;
+                }
+                rankSongContainer.innerHTML = rankSongHtml;
+            </script>           
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>

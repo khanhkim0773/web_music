@@ -342,6 +342,11 @@ body {
     color: black;
 }
 
+.sub-content .description {
+    font-size: smaller;
+    color: #ccc;
+}
+
 
 .rank {
     width: 18%;
