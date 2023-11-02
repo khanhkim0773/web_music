@@ -17,9 +17,9 @@
                     <img src="./assets/img/logo/homeLogo.jpg" alt="">
                 </section>
                 <section class="search-box">
-                    <form action="" id="">
+                    <form action="search_page.html" id="" method="get">
                         <input type="text" class="search-text" placeholder="Tìm kiếm bài hát">
-                        <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="search-btn" onclick="window.location.href = 'search_page.html'" ><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </section>
             </div>
@@ -79,7 +79,7 @@
                 for (let i = 0; i < 4; i++) {
                     playlistHtml += `
                         <div class="playlist sub-content">
-                            <div class="playbtn">
+                            <div class="js-play-playlist-btn playbtn">
                                 <a href=""><i class="fa-solid fa-play"></i></a>
                             </div>
                             <img src="./assets/img/logo/playlistpng.png" alt="Playlist Image">
@@ -102,7 +102,7 @@
                 for (let i = 0; i < 4; i++) {
                     songHtml += `
             <div class="songs sub-content">
-                <div class="playbtn">
+                <div class="js-play-song-btn playbtn">
                     <a href=""><i class="fa-solid fa-play"></i></a>
                 </div>
                 <img src="./assets/img/logo/logobaihat.jpg" alt="Playlist Image">
@@ -162,13 +162,13 @@
                         rankSongHtml += `
                             <div class="rank-song">
                                 <div class="rank-img">
-                                    <div class="rank-number">1</div>
+                                    <div class="rank-number">${i + 1}</div>
                                     <img src="./assets/img/logo/Songs_to_Calm_Your_Mind_1080x.webp" alt="">
                                 </div>
                                 
                                 <div class="song-info">
-                                    <p class="info">Tên bài hát <i class="info fa-regular fa-heart"></i> <i class="info fa-solid fa-ellipsis-vertical"></i></p>
-                                    <p class="info">Tác giả</p>
+                                    <p class="info">Nơi này có anh <i class="info fa-regular fa-heart"></i> <i class="info fa-solid fa-ellipsis-vertical"></i></p>
+                                    <p class="info">Sơn Tùng MTP</p>
                                 </div>
                             </div>`;
                     }

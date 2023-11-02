@@ -11,6 +11,9 @@ const loginModelContainer = $('.js-login-modal-container')
 const posterDiv = $('.poster')
 const subContents = $$('.sub-content')
 const playBtns = $$('.playbtn')
+const playSongsBtn = $$('.js-play-song-btn')
+const playPlaylistsBtn = $$('.js-play-playlist-btn')
+
 
 function showOrHideRegisterModal() {
     registerModal.classList.toggle('open')
@@ -62,4 +65,17 @@ for (let i = 0; i < subContents.length; i++) {
         playBtns[i].classList.toggle('open');
     });
 }
+
+for ( let i = 0; i < playSongsBtn.length; i++) {
+    playSongsBtn[i].addEventListener('click', function() {
+        window.location.href = 'playsong.html'
+    })
+}
+
+for ( let i = 0; i < playPlaylistsBtn.length; i++) {
+    playPlaylistsBtn[i].addEventListener('click', function() {
+        window.location.href = 'playlist.html'
+    })
+}
+
 
