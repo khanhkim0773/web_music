@@ -21,7 +21,7 @@ ul {
 body {
     padding: 12px;
     margin: 12px;
-    background-color: black;
+    background-color: #18191A;
 }
 
 .modal {
@@ -176,7 +176,7 @@ body {
 
 #header {
     width: 20%;
-    background-color: black;
+    background-color: #18191A;
     position: fixed;
     left: 12px;
     top: 12px;
@@ -228,7 +228,7 @@ body {
 
 #header .sub-header-nav {
     padding: 8px;
-    background-color: rgb(18, 18, 18);
+    background-color: #18191A;
     border-radius: 8px;
     margin-top: 8px;
 }
@@ -258,7 +258,7 @@ body {
 
 .content {
     width: 60%;
-    background-color: rgb(18, 18, 18);
+    background-color: #18191A;
     margin-left: 20.5%;
     border-radius: 8px;
 }
@@ -289,7 +289,8 @@ body {
 .content .section {
     width: 100%;
     padding: 8px;
-    margin-top: 8px;
+    margin: 20px 0;
+    background-color: #242526;
 }
 
 .content .section .content-title {
@@ -299,6 +300,16 @@ body {
 
 .content .sub-content {
     position: relative;
+    
+}
+
+.content .sub-content p {
+    white-space: nowrap;
+    overflow: hidden;
+
+    /* hiển thị dấu ... khi tràn */
+    text-overflow: ellipsis; 
+    
 }
 
 .content .playlist,
