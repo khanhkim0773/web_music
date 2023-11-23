@@ -76,7 +76,7 @@
                             echo '    <div class="js-play-song-btn playbtn">';
                             echo '        <a href="#"><i class="fa-solid fa-play"></i></a>';
                             echo '    </div>';
-                            echo '    <img src="./assets/img/logo/logobaihat.jpg" alt="Playlist Image">';
+                            echo '    <img src="./assets/img/songs/'.$song['image'].'" alt="'.$song['song_name'].'">';
                             echo '    <p>' . $song['song_name'] . '</p>';
                             $artistId = $song['artist_id'];
                             $artistQuery = "SELECT artist_name FROM artists WHERE artist_id = $artistId";

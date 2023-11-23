@@ -71,7 +71,7 @@
 
         .add-button {
             padding: 5px 10px;
-            background-color: #333;
+            background-color: green;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -110,7 +110,7 @@
 
         .backup-button {
             padding: 5px 10px;
-            background-color: #333;
+            background-color: #BE3144;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -135,6 +135,10 @@
 
         .back-button:hover {
             background-color: #555;
+        }
+
+        .deletebtn {
+            background-color: red !important;
         }
     </style>
 </head>
@@ -165,35 +169,26 @@
                 <th>Ảnh bài hát</th>
                 <th>Thao tác</th>
             </tr>
-            <tr>
-                <td>Bài hát 1</td>
-                <td><img src="song1.jpg" alt="Ảnh bài hát 1"></td>
-                <td class="action-buttons">
-                    <button onclick="showSongDetails('Bài hát 1', 'song1.jpg')">Sửa</button>
-                    <button>Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Bài hát 2</td>
-                <td><img src="song2.jpg" alt="Ảnh bài hát 2"></td>
-                <td class="action-buttons">
-                    <button>Sửa</button>
-                    <button>Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Bài hát 3</td>
-                <td><img src="song3.jpg" alt="Ảnh bài hát 3"></td>
-                <td class="action-buttons">
-                    <button>Sửa</button>
-                    <button>Xóa</button>
-                </td>
-            </tr>
+            <?php
+            include('./db/config.php');
+            $sql = "SELECT * FROM songs";
+            $result = $conn->query($sql);
+            if ( $result->num_rows > 0){
+                while($song = $result->fetch_assoc()){
+                    echo '<tr>';
+            echo '<td>'.$song['song_name'].'</td>';
+            echo '<td><img src="./assets/img/songs/'.$song['image'].'" alt="'.$song['song_name'].'"></td>';
+            echo '<td class="action-buttons">';
+            echo '<button>Sửa</button>';
+            echo '<button class = "deletebtn">Xóa</button>';
+            echo '</td>';
+            echo '</tr>';
+                }
+            }
+             ?>
         </table>
 
     </div>
-
-
 </body>
 
 </html>
