@@ -1,34 +1,10 @@
 $ = document.querySelector.bind(document)
 $$ = document.querySelectorAll.bind(document)
-const registerBtn = document.querySelector('.register-btn')
-const registerModal = document.querySelector('.js-register-modal')
-const cancelRegisterBtn = document.querySelector('.js-cancel-register')
-const registerModelContainer = document.querySelector('.register-modal-container')
-const loginBtn = $('.login-btn')
-const loginModal = $('.js-login-modal')
-const cancelLoginBtn = $('.js-cancel-login')
-const loginModelContainer = $('.js-login-modal-container')
 const posterDiv = $('.poster')
 const subContents = $$('.sub-content')
 const playBtns = $$('.playbtn')
 const playSongsBtn = $$('.js-play-song-btn')
 const playPlaylistsBtn = $$('.js-play-playlist-btn')
-
-
-function showOrHideRegisterModal() {
-    registerModal.classList.toggle('open')
-}
-
-function showOrHideLoginModal() {
-    loginModal.classList.toggle('open')
-}
-
-registerModal.addEventListener('click', showOrHideRegisterModal)
-registerBtn.addEventListener('click', showOrHideRegisterModal)
-cancelRegisterBtn.addEventListener('click', showOrHideRegisterModal)
-registerModelContainer.addEventListener('click', function (event) {
-    event.stopPropagation()
-})
 
 loginModal.addEventListener('click', showOrHideLoginModal)
 loginBtn.addEventListener('click', showOrHideLoginModal)
