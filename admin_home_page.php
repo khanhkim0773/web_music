@@ -76,9 +76,9 @@
         </div>
         
         <div class="selection-buttons">
-            <button onclick="window.location.href = 'admin_song.html'">Quản lý bài hát</button>
-            <button onclick="window.location.href = 'admin_account.html'">Quản lý tài khoản</button>
-            <button onclick="window.location.href = 'admin_category.html'">Quản lý thể loại</button>
+            <button onclick="window.location.href = 'admin_song.php'">Quản lý bài hát</button>
+            <button onclick="window.location.href = 'admin_account.php'">Quản lý tài khoản</button>
+            <button onclick="window.location.href = 'admin_category.php'">Quản lý thể loại</button>
 
         </div>
     </div>

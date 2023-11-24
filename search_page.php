@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,41 +8,54 @@
     <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.4.2-web/css/all.css">
     <title>Tìm kiếm</title>
 </head>
+
 <body>
-    <script src="./js/header.js"></script>
-    <div id="headerJS">
-        <script>
-            document.getElementById('headerJS').innerHTML = headerDiv;
-        </script>
-    </div>
-    
+    <?php include('./modules/header.php');
+    include('./db/config.php'); ?>
+
+
 
     <div class="content">
+
         <div class="list-song section">
-            <p class="content-title">Kết quả tìm kiếm</p>
-            <div class="songs-container"></div>
-        </div>
-    </div>
+            <?php
+            if (isset($_GET['search_query'])) {
+                $search_query = $_GET['search_query'];
 
-    <script>
-        const songContainer = document.querySelector('.songs-container');
-        let songHtml = '';
-        for (let i = 0; i < 14; i++) {
-            songHtml += `
-    <div class="songs sub-content">
-        <div class="playbtn">
-            <a href=""><i class="fa-solid fa-play"></i></a>
-        </div>
-        <img src="./assets/img/logo/logobaihat.jpg" alt="Playlist Image">
-        <p>Có ai hẹn hò cùng em chưa</p>
-        <p class = "description">Quân AP</p>
-    </div>
-`;
-        }
-        songContainer.innerHTML = songHtml;
-    </script>
+                $sql = "SELECT * FROM songs WHERE song_name like '%$search_query%'";
+                $result = $conn->query($sql);
+                echo '<p class="content-title">' . $search_query . '</p>';
+                echo '<div class="songs-container">';
 
-    <div class="rank">
+                if ($result->num_rows > 0) {
+                    while ($song = $result->fetch_assoc()) {
+                        echo '<div class="songs sub-content">';
+                        echo '    <div class="js-play-song-btn playbtn">';
+                        echo '        <a href="#"><i class="fa-solid fa-play"></i></a>';
+                        echo '    </div>';
+                        echo '    <img src="./assets/img/songs/' . $song['image'] . '" alt="' . $song['song_name'] . '">';
+                        echo '    <p>' . $song['song_name'] . '</p>';
+                        $artistId = $song['artist_id'];
+                        $artistQuery = "SELECT artist_name FROM artists WHERE artist_id = $artistId";
+                        $artistResult = $conn->query($artistQuery);
+                        $artist = $artistResult->fetch_assoc();
+                        echo '    <p class="description">' . $artist['artist_name'] . '</p>';
+
+                        echo '</div>';
+                    }
+                }
+            }
+            $conn->close();
+
+            echo '</div>';
+            echo '</div>';
+            ?>
+        </div>
+
+        <?php include('./modules/rank.php') ?>
+
+
+        <!-- <div class="rank">
         <p class="rank-title"><i class="rank-title fa-solid fa-ranking-star"></i>Bảng xếp hạng </p>
         <div class="tabs">
             <div class="tab-item">
@@ -77,7 +91,8 @@
                 rankSongContainer.innerHTML = rankSongHtml;
             </script>           
         </div>
-    </div>
-    <script src="./js/main.js"></script>
+    </div> -->
+        <script src="./js/main.js"></script>
 </body>
+
 </html>

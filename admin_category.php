@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Quản lý tài khoản</title>
+    <title>Quản lý thể loại âm nhạc</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,7 +66,7 @@
 
         .add-button {
             padding: 5px 10px;
-            background-color: #333;
+            background-color: green;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -114,52 +114,57 @@
         .back-button:hover {
             background-color: #555;
         }
+
+        .deletebtn {
+            background-color: red !important;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Quản lý tài khoản</h1>
+    <h1>Quản lý thể loại âm nhạc</h1>
 
     <div class="container">
         <div class="back-button-container">
-            <button class="back-button" onclick="window.location.href = 'admin_home_page.html'">Quay lại</button>
+            <button class="back-button" onclick="window.location.href = 'admin_home_page.php'">Quay lại</button>
         </div>
+
         <div class="add-button-container">
             <button class="add-button">Thêm</button>
         </div>
 
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm tài khoản...">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm thể loại...">
             <button>Tìm kiếm</button>
         </div>
 
         <table>
             <tr>
-                <th>Tên người dùng</th>
-                <th>Email</th>
-                <th>Quyền hạn</th>
+                <th>Tên thể loại</th>
                 <th>Thao tác</th>
             </tr>
-            <tr>
-                <td>Người dùng 1</td>
-                <td>user1@example.com</td>
-                <td>Người dùng thường</td>
-                <td class="action-buttons">
-                    <button>Sửa</button>
-                    <button>Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Người dùng 2</td>
-                <td>user2@example.com</td>
-                <td>Người dùng thường</td>
-                <td class="action-buttons">
-                    <button>Sửa</button>
-                    <button>Xóa</button>
-                </td>
-            </tr>
-        </table>
 
+            <?php
+             include('./db/config.php');
+             $sql = "SELECT * FROM music_genres";
+             $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+                 while ($genre = $result->fetch_assoc()) {
+                     echo '<tr>';
+                     echo '<td>'.$genre['genre_name'].'</td>';
+                     echo '<td class="action-buttons">';
+                     echo '<button>Sửa</button>';
+                     echo '<button class = "deletebtn">Xóa</button>';
+                     echo '</td>';
+                     echo'</tr>';
+                 }
+             }
+             $conn->close();
+
+             ?>
+              
+ 
+        </table>
     </div>
 </body>
 

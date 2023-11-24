@@ -148,7 +148,7 @@
 
     <div class="container">
         <div class="back-button-container">
-            <button class="back-button" onclick="window.location.href = 'admin_home_page.html'">Quay lại</button>
+            <button class="back-button" onclick="window.location.href = 'admin_home_page.php'">Quay lại</button>
         </div>
         <div class="add-button-container">
             <button class="add-button">Thêm</button>
