@@ -19,96 +19,107 @@
                 <div class="wrapper" id="app">
                     <div class="player">
                         <div class="player__top">
-                            <div class="player-cover">
-                                <transition-group :name="transitionName">
-                                    <div class="player-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"  v-for="(track, $index) in tracks" :key="$index"></div>
-                                </transition-group>
-                            </div>
-                            <div class="play-right">
-                                <div class="progress" ref="progress">
-                                    <div class="music-top-bg">
-                                        <div class="top-right">
-                                            <div class="progress__top">
-                                                <div class="album-info" v-if="currentTrack">
-                                                    <div class="album-info__name">{{ currentTrack.name }}</div>
-                                                    <div class="album-info__track">{{ currentTrack.artist }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="item-top-right">
-                                                <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                                    <svg class="icon">
-                                                      <use xlink:href="#icon-heart-o"></use>
-                                                      <use xlink:href="#icon-heart"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="player-controls__item -heroicon" @click=""> <!-- bổ sung -->
-                                                    <svg class="icon">
-                                                        <use xlink:href="#icon-vertical"></use>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <?php
+                                include('./db/config.php');
+    					        $sql = "SELECT `tenBaiHat`, `tenNgheSi`, `avtBaiHat`, `source`, `favorite` FROM `playlistForYou` WHERE `STT` = 1";
+    					        $kq = mysqli_query($conn,$sql);
+    					        while($row = mysqli_fetch_array($kq, MYSQLI_ASSOC))
+						        {
+							    echo 
+                                    '<div class="player-cover">
+                                        <transition-group :name="transitionName">
+                                            <div class="player-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"  v-for="(track, $index) in tracks" :key="$index"></div>
+                                        </transition-group>
                                     </div>
-                                </div>
-                                <div class="center-controls">
-                                    <div class="time-play">
-                                        <div class="progress__time">{{ currentTime }}</div>
-                                        <div class="progress__bar" @click="clickProgress">
-                                            <div class="progress__current" :style="{ width : barWidth }"></div>
-                                        </div>
-                                        <div class="progress__duration">{{ duration }}</div>
-                                    </div>
-                                    <div class="bottom-controls">
-                                        <div class="item-bottom-left">
-                                            <div class="player-controls__item" @click="prevTrack">
-                                                <svg class="icon">
-                                                    <use xlink:href="#icon-prev"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="player-controls__item -xl js-play" @click="play">
-                                                <svg class="icon">
-                                                    <use xlink:href="#icon-pause" v-if="isTimerPlaying"></use>
-                                                    <use xlink:href="#icon-play" v-else></use>
-                                                </svg>
-                                            </div>
-                                            <div class="player-controls__item" @click="nextTrack">
-                                                <svg class="icon">
-                                                    <use xlink:href="#icon-next"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="player-controls__item" @click=""> <!-- bổ sung -->
-                                                <svg class="icon">
-                                                    <use xlink:href="#icon-square"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="player-controls__item" @click=""> <!-- bổ sung -->
-                                                <svg class="icon">
-                                                    <use xlink:href="#icon-sound"></use>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="item-bottom-right">
-                                            <div class="player-controls">
-                                                <div class="player-controls__item" @click=""> <!-- bổ sung -->
-                                                    <svg class="icon">
-                                                        <use xlink:href="#icon-download"></use>
-                                                    </svg>
-                                                </div>
-                                                <a :href="currentTrack.url" target="_blank" class="player-controls__item">
-                                                    <svg class="icon">
-                                                        <use xlink:href="#icon-link"></use> <!-- bổ sung link bên js -->
-                                                    </svg>
-                                                </a>
-                                                <div class="player-controls__item" @click=""> <!-- bổ sung -->
-                                                    <svg class="icon">
-                                                        <use xlink:href="#icon-full-screen"></use>
-                                                    </svg>
+                                    <div class="play-right">
+                                        <div class="progress" ref="progress">
+                                            <div class="music-top-bg">
+                                                <div class="top-right">
+                                                    <div class="progress__top">
+                                                        <div class="album-info" v-if="currentTrack">
+                                                            <div class="album-info__name">' . $row['tenBaiHat'] . '</div>
+                                                            <div class="album-info__track">' . $row['tenNgheSi'] . '</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-top-right">
+                                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
+                                                            <svg class="icon">
+                                                              <use xlink:href="#icon-heart-o" v-if="isFavorited"></use>
+                                                              <use xlink:href="#icon-heart" v-else></use>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="player-controls__item -heroicon" @click=""> <!-- bổ sung -->
+                                                            <svg class="icon">
+                                                                <use xlink:href="#icon-vertical"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        <div class="center-controls">
+                                            <div class="time-play">
+                                                <div class="progress__time">{{ currentTime }}</div>
+                                                <div class="progress__bar" @click="clickProgress">
+                                                    <div class="progress__current" :style="{ width : barWidth }"></div>
+                                                </div>
+                                                <div class="progress__duration">{{ duration }}</div>
+                                            </div>
+                                            <div class="bottom-controls">
+                                                <div class="item-bottom-left">
+                                                    <div class="player-controls__item" @click="prevTrack">
+                                                        <svg class="icon">
+                                                            <use xlink:href="#icon-prev"></use>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="player-controls__item -xl js-play" @click="play">
+                                                        <svg class="icon">
+                                                            <use xlink:href="#icon-pause" v-if="isTimerPlaying"></use>
+                                                            <use xlink:href="#icon-play" v-else></use>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="player-controls__item" @click="nextTrack">
+                                                        <svg class="icon">
+                                                            <use xlink:href="#icon-next"></use>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="player-controls__item" @click=""> <!-- bổ sung -->
+                                                        <svg class="icon">
+                                                            <use xlink:href="#icon-square"></use>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="player-controls__item" @click=""> <!-- bổ sung -->
+                                                        <svg class="icon">
+                                                            <use xlink:href="#icon-sound"></use>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="item-bottom-right">
+                                                    <div class="player-controls">
+                                                        <div class="player-controls__item" @click=""> <!-- bổ sung -->
+                                                            <svg class="icon">
+                                                                <use xlink:href="#icon-download"></use>
+                                                            </svg>
+                                                        </div>
+                                                        <a :href="currentTrack.url" target="_blank" class="player-controls__item">
+                                                            <svg class="icon">
+                                                                <use xlink:href="#icon-link"></use> <!-- bổ sung link bên js -->
+                                                            </svg>
+                                                        </a>
+                                                        <div class="player-controls__item" @click=""> <!-- bổ sung -->
+                                                            <svg class="icon">
+                                                                <use xlink:href="#icon-full-screen"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+						        }       
+    				 	        mysqli_free_result($kq);
+    					        mysqli_close($conn);
+                            ?>
                         </div>
                         <div v-cloak></div>
                     </div>
@@ -207,24 +218,35 @@
             <div class="main-bottom">
                 <div class="bottom-left">
                     <div class="luotxem-danhgia">
-                        <div class="luotxem">
-                            <p>Lượt xem: <span id="viewCount">1.235.684</span></p>
-                        </div>
-                        <div class="danhgia">
-                            <p>Đánh giá: </p>
-                            <div class="rating">
-                                <input type="radio" name="rating" id="rating-5">
-                                <label for="rating-5"></label>
-                                <input type="radio" name="rating" id="rating-4">
-                                <label for="rating-4"></label>
-                                <input type="radio" name="rating" id="rating-3">
-                                <label for="rating-3"></label>
-                                <input type="radio" name="rating" id="rating-2">
-                                <label for="rating-2"></label>
-                                <input type="radio" name="rating" id="rating-1">
-                                <label for="rating-1"></label>
-                            </div>                          
-                        </div>
+                        <?php
+                            include('./db/config.php');
+    				    	$sql = "SELECT `luotXem`, `danhGia` FROM `playlistForYou` WHERE `STT` = 1";
+    				    	$kq = mysqli_query($conn,$sql);
+    				    	while($row = mysqli_fetch_array($kq, MYSQLI_ASSOC))
+					    	{
+					    	    echo 
+                                    '<div class="luotxem">
+                                        <p>Lượt xem: <span id="viewCount">' . $row['luotXem'] . '</span></p>
+                                    </div>
+                                    <div class="danhgia">
+                                        <p>Đánh giá: ' . $row['danhGia'] . '</p>
+                                        <div class="rating">
+                                            <input type="radio" name="rating" id="rating-5">
+                                            <label for="rating-5"></label>
+                                            <input type="radio" name="rating" id="rating-4">
+                                            <label for="rating-4"></label>
+                                            <input type="radio" name="rating" id="rating-3">
+                                            <label for="rating-3"></label>
+                                            <input type="radio" name="rating" id="rating-2">
+                                            <label for="rating-2"></label>
+                                            <input type="radio" name="rating" id="rating-1">
+                                            <label for="rating-1"></label>
+                                        </div>                          
+                                    </div>';
+                            }
+                            mysqli_free_result($kq);
+                            mysqli_close($conn);
+                        ?>
                     </div>
                     <div class="thongtin">
                             Mô tả
@@ -278,392 +300,50 @@
                         <div>Danh sách bài hát gợi ý</div>
                     </div>
                     <div class="list-song">
-                        <!-- <div class="one-song">
-                            <div class="avt-song">
-                                <transition-group :name="transitionName">
-                                    <div class="album-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"  v-for="(track, $index) in tracks" :key="$index"></div>
-                                </transition-group>
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info" v-if="currentTrack">
-                                    <div class="song-info__name">{{ currentTrack.name }}</div>
-                                    <div class="song-info__track">{{ currentTrack.artist }}</div>
+                        <?php
+                        include('./db/config.php');
+    					$sql = "SELECT `tenBaiHat`, `tenNgheSi`, `avtBaiHat`, `source`, `favorite` FROM `playlistForYou`";
+    					$kq = mysqli_query($conn,$sql);
+    					while($row = mysqli_fetch_array($kq, MYSQLI_ASSOC))
+						{
+							echo 
+                            '<div class="one-song">
+                                <div class="avt-song">
+                                    <img src="' . $row['avtBaiHat'] . '">
                                 </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
+                                <div class="song-right">
+                                    <div class="song-info">
+                                        <div class="song-info__name">' . $row['tenBaiHat'] . '</div>
+                                        <div class="song-info__track">' . $row['tenNgheSi'] . '</div>
+                                    </div>
+                                    <div>
+                                        <div class="item-top-right">
+                                            <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
+                                                <svg class="icon">
+                                                  <use xlink:href="#icon-heart-o" v-if="isFavorited"></use>
+                                                  <use xlink:href="#icon-heart" v-else></use>
+                                                </svg>
+                                            </div>
+                                            <div class="player-controls__item -heroicon" @click=""> 
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-vertical"></use>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> -->
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/cophailalove.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Có phải là Love</div>
-                                    <div class="song-info__track">UMIE x Droppy x Hổ</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/cryingoveryou.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Crying over you</div>
-                                    <div class="song-info__track">JustaTee ft. Binz</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/demngayxaem.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Đếm ngày xa em</div>
-                                    <div class="song-info__track">Only C ft. Lou Hoàng</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/detoiomembanggiaidieunay.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Để tôi ôm em bằng giai điệu này</div>
-                                    <div class="song-info__track">Kai Đình x Min x Grey D</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/duchomaivesau.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Dù cho mai về sau</div>
-                                    <div class="song-info__track">buitruonglinh</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/henmotmai.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Hẹn một mai</div>
-                                    <div class="song-info__track">Bùi Anh Tuấn</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/lacvaotrongmo.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Lạc vào trong mơ</div>
-                                    <div class="song-info__track">Simon C ft. Wuy</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/mienman.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Miên man</div>
-                                    <div class="song-info__track">Minh Huy</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/thichanhroiday.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Thích anh rồi đấy</div>
-                                    <div class="song-info__track">Hannie</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-song">
-                            <div class="avt-song">
-                                <img src="./song/imgSong/tungquen.jpg">
-                            </div>
-                            <div class="song-right">
-                                <div class="song-info">
-                                    <div class="song-info__name">Từng quen</div>
-                                    <div class="song-info__track">Wren Evans, Itsnk</div>
-                                </div>
-                                <div>
-                                    <div class="item-top-right">
-                                        <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
-                                            <svg class="icon">
-                                              <use xlink:href="#icon-heart-o"></use>
-                                              <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="player-controls__item -heroicon" @click=""> 
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-vertical"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </div>';
+						}
+    				 	mysqli_free_result($kq);
+    					mysqli_close($conn);
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
         <script src="./js/playsong.js"></script>
-        <div class="rank">
-            <p class="rank-title"><i class="rank-title fa-solid fa-ranking-star"></i>Bảng xếp hạng </p>
-            <div class="tabs">
-                <div class="tab-item">
-                    Việt Nam
-                </div>
-                <div class="tab-item border">
-
-                    Âu mỹ
-                </div>
-                <div class="tab-item">
-                    Hàn Quốc
-                </div>
-            </div>
-
-            <?php include('./modules/rank.php') ?>
-        </div>
-        </main>
-
-        <!-- form dang ki -->
-        <div class="js-register-modal modal">
-            <div class="js-register-modal-container register-modal-container">
-                <header class="register-modal-header">
-                    Đăng kí
-                </header>
-                <form action=""></form>
-                <div class="register-modal-body">
-                    <div class="row-login">
-                        <label for="">Tên đăng nhập</label>
-                        <input type="text" required placeholder="user_name_example">
-                    </div>
-                    <div class="row-login">
-                        <label for="">Số điện thoại</label>
-                        <input type="tel" required placeholder="tel: 012xxxxx">
-                    </div>
-                    <div class="row-login">
-                        <label for="">Email</label>
-                        <input type="email" required placeholder="email@example.com">
-                    </div>
-                    <div class="row-login">
-                        <label for="">Mật khẩu</label>
-                        <input type="password" required placeholder="password_exg">
-                    </div>
-                    <div class="row-login">
-                        <label for="">Nhập lại mật khẩu</label>
-                        <input type="password" required placeholder="password_exg">
-                    </div>
-                    <div class="btns">
-                        <button class="js-cancel-register cancel-btn btn">Hủy bỏ</button>
-                        <button class="register-btn btn" type="submit">Đăng kí</button>
-                    </div>
-                </div>
-                </form>
-
-                <footer class="register-modal-footer">
-                    <p><a href="">Quên mật khẩu?</a></p>
-                    <p>Đã có tài khoản? <a href="">Đăng nhập</a></p>
-                </footer>
-            </div>
-        </div>
-
-        <!-- form dang nhap -->
-        <div class="js-login-modal modal">
-            <div class="js-login-modal-container login-modal-container">
-                <header class="login-modal-header">
-                    Đăng nhập
-                </header>
-                <form action=""></form>
-                <div class="login-modal-body">
-                    <div class="row-login">
-                        <label for="">Tên đăng nhập</label>
-                        <input type="text" required placeholder="example@gmail.com">
-                    </div>
-                    <div class="row-login">
-                        <label for="">Mật khẩu</label>
-                        <input type="password" required placeholder="user_password_eg">
-                    </div>
-                    <div class="btns">
-                        <button class="js-cancel-login cancel-btn btn">Hủy bỏ</button>
-                        <button class="login-btn btn" type="submit">Đăng nhập</button>
-                    </div>
-                </div>
-                </form>
-
-                <footer class="login-modal-footer">
-                    <p><a href="">Quên mật khẩu?</a></p>
-                    <p>Chưa có tài khoản? <a href="">Đăng kí</a></p>
-                </footer>
-            </div>
-        </div>
-
-        <script src="./js/main.js"></script>
+        <?php include('./modules/rank.php') ?>
 </body>
 
 </html>
