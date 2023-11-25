@@ -229,7 +229,7 @@
                                         <p>Lượt xem: <span id="viewCount">' . $row['luotXem'] . '</span></p>
                                     </div>
                                     <div class="danhgia">
-                                        <p>Đánh giá: ' . $row['danhGia'] . '</p>
+                                        <p>Đánh giá: ' . $row['danhGia'] . '/5 </p>
                                         <div class="rating">
                                             <input type="radio" name="rating" id="rating-5">
                                             <label for="rating-5"></label>
