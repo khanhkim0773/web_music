@@ -447,3 +447,52 @@ body {
     display: block;
     clear: both;
 }
+ul#main-menu .sub-menu{
+    display: none;
+   
+}
+
+ul#main-menu li:hover .sub-menu{
+    display: block;
+  
+    border:  rgba(13, 127, 45, 0.459) solid 2px;
+    background-color: #565353a5;
+}
+
+.edit{
+    background-color: #565353a5;
+    width: 100%;
+}
+
+.edit:hover{
+    background-color: #aba7a1a5;
+}
+
+.editProfile{
+    position: fixed;
+    background-color: #20D760;
+    top: 170px;
+    left: 300px;
+     right: 300px;
+    bottom: 170px;
+ 
+    
+}
+.creatAlBum{
+    left:120px;
+    position: relative;
+    width: 500px;
+
+}
+.creatAlBum td{
+    height:100px;
+}
+.creatAlBum input{
+    background-color: rgba(255, 255, 255, 0.23);
+}
+
+.size_Profile_creatAlBum{
+    width: 100%;
+    height:30px;
+}
+
