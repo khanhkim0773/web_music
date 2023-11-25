@@ -23,7 +23,7 @@ new Vue({
             cover: "./song/imgSong/cophailalove.jpg",
             source: "./song/mp3/CoPhaiLaLove-UMIEDroppyHo.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Crying over you",
@@ -39,7 +39,7 @@ new Vue({
             cover: "./song/imgSong/demngayxaem.jpg",
             source: "./song/mp3/DemNgayXaEm-OnlyCLouHoang.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Để tôi ôm em bằng giai điệu này",
@@ -47,7 +47,7 @@ new Vue({
             cover: "./song/imgSong/detoiomembanggiaidieunay.jpg",
             source: "./song/mp3/DeToiOmEmBangGiaiDieuNay-KaiDinhMINGREYD.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Dù cho mai về sau",
@@ -55,7 +55,7 @@ new Vue({
             cover: "./song/imgSong/duchomaivesau.jpg",
             source: "./song/mp3/DuChoMaiVeSau-buitruonglinh.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Hẹn một mai",
@@ -63,7 +63,7 @@ new Vue({
             cover: "./song/imgSong/henmotmai.jpg",
             source: "./song/mp3/HenMotMai-BuiAnhTuan.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Lạc vào trong mơ",
@@ -71,7 +71,7 @@ new Vue({
             cover: "./song/imgSong/lacvaotrongmo.jpg",
             source: "./song/mp3/LacVaoTrongMo-SimonCWUY.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Miên man",
@@ -79,7 +79,7 @@ new Vue({
             cover: "./song/imgSong/mienman.jpg",
             source: "./song/mp3/MienMan-MinhHuy.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Thích anh rồi đấy",
@@ -87,7 +87,7 @@ new Vue({
             cover: "./song/imgSong/thichanhroiday.jpg",
             source: "./song/mp3/ThichAnhRoiDay-Hannie.mp3",
             url: "",
-            favorited: false
+            favorited: true
           },
           {
             name: "Từng quen",
@@ -95,7 +95,7 @@ new Vue({
             cover: "./song/imgSong/tungquen.jpg",
             source: "./song/mp3/TungQuen-WrenEvansitsnk.mp3",
             url: "",
-            favorited: false
+            favorited: true
           }
         ],
         currentTrack: null,
