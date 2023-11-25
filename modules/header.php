@@ -25,12 +25,13 @@
         </ul>
         <ul>
             <li>
-                <a href=""><i class="fa-solid fa-circle-play"></i>Playlist</a>
-            </li>
-            <li>
-                <a href=""><i class="fa-solid fa-plus"></i>Tạo playlist</a>
+                  <li>
+                        <a href="Album.php"><i class="fa-solid fa-circle-play"></i>playlist</a>
+                    </li>
+                    <li>
+                        <a href="CreateAlBum.php"><i class="fa-solid fa-plus"></i>Tạo playlist</a>
 
-            </li>
+                    </li>
         </ul>
         <ul>
             <li>
