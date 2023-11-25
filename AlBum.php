@@ -32,7 +32,7 @@
                                  echo'<div class="playlist sub-content"  style="height:250px;" >';
                                       echo' <div class="js-play-playlist-btn playbtn">';
                                       echo'  </div>';
-                                          echo' <a href="1playlist.php"><img src="'.$row['LinkAnh'].'" alt="Playlist Image"></a>';
+                                          echo' <a href="1playlist.php"><img src="./assets/img/logo/playlistpng.png" alt="Playlist Image"></a>';
                                        echo'  <div>';
                             
                                              echo'  <a href="1playlist.php"><div class="an" style="float: left;width: 60%;" >'.$row['TenAlbum'].'</div></a>';
